@@ -1,0 +1,14 @@
+<%- include("partials/header.ejs") %>
+
+    <div class="index-container">
+        <form action="/open-folder" method="POST">
+            <button class="folder">
+                <img class="folder-image" src="#" width="240px">
+                <h1 class="folder-name">
+                    <%= folderName %>
+                </h1>
+            </button>
+        </form>
+    </div>
+
+<%- include("partials/footer.ejs") %>
