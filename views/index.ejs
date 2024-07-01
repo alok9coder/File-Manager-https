@@ -2,6 +2,7 @@
 
 <form class="search-bar" method="POST" action="/search">
     <input class="search-text" type="text" name="search" placeholder="Search...">
+    <input class="hidden-input" type="text" name="directoryPath" value="<%= dirPath %>">
     <button class="search-submit" type="submit" value="submit">
         <svg style="width: 25px; height: 25px;">
             <path fill-rule="evenodd" clip-rule="evenodd"
@@ -33,6 +34,64 @@
         </form>
     </div>
 </div>
+
+<% if(locals.searchResults) { %>
+    <form class="search-container" action="/open-folder" method="POST">
+        <input class="hidden-input" type="text" name="directoryPath" value="<%= dirPath %>">
+        <h1 class="search-results">
+            Search Results...
+        </h1>
+        <p id="search-pattern">
+            Showing results for <a href="#"><%= pattern %>...</a>
+        </p>
+        <% if (searchResults) { %>
+        <h1 class="search-results-length">
+            <% if (filesAndFolders.Folders.length === 1 || filesAndFolders.Files.length === 1) { %>
+            Result Found!
+            <% } else { %>
+            Results Found!
+            <% } %>
+            <%= " ............ " %>
+            Folders → <%= filesAndFolders.Folders.length %>
+            &
+            Files → <%= filesAndFolders.Files.length %>
+        </h1>
+        <% } %>
+
+        <ul class="search-results-folders">
+            <% if (filesAndFolders.Folders.length > 0) { %>
+                <% for (let i = 0; i < filesAndFolders.Folders.length; i++) { %>
+                    <hr>
+                    <li class="search-item">
+                        <button class="search-result-link" value="<%= filesAndFolders.Folders[i] %>" 
+                                name="folderName">
+                            <h1><%= filesAndFolders.Folders[i] %></h1>
+                        </button>
+                    </li>
+                <% } %>
+            <% } else { %>
+            <h1>No Matching Folders were Found!</h1>
+            <% } %>
+        </ul>
+    
+        <ul class="search-results-files">
+            <% if (filesAndFolders.Files.length > 0) { %>
+                <% for (let i = 0; i < filesAndFolders.Files.length; i++) { %>
+                    <% let searchFiles = filesAndFolders.Files[i].split("/") %>
+                    <hr>
+                    <li class="search-item">
+                        <button class="search-result-link" value="<%= searchFiles[searchFiles.length - 1] %>" 
+                                name="fileName" formaction="/download-file">
+                            <h1><%= filesAndFolders.Files[i] %></h1>
+                        </button>
+                    </li>
+                <% } %>
+            <% } else { %>
+            <h1>No Matching Files were Found!</h1>
+            <% } %>
+        </ul>
+    </form>
+<% } %>
 
 <div class="folder-container">
     <% const dirPathSplit = dirPath.split("/") %>

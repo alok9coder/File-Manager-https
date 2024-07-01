@@ -14,6 +14,7 @@ import DirectoryPath from "./Directory.js";
 import { readDir } from "./Directory.js";
 import { downloadRoute } from "./DownloadFiles.js";
 import DownloadStream from "./DownloadFiles.js";
+import { searchFiles } from "./Search.js";
 
 const app = express();
 const port = 7777;
@@ -171,6 +172,33 @@ app.post("/register-account", async (req, res) => {
     }
 });
 
+app.post("/search", async (req, res) => {
+    const searchPattern = req.body.search;
+    let currDir = req.body.directoryPath;
+    
+    if (currDir[currDir.length - 1] === "/") {
+            currDir = currDir;
+    } else {    
+            currDir = currDir + "/";
+    }
+
+    if (!currDir) {
+        currDir = homeDir;
+    }
+
+    let searchResults = await searchFiles(searchPattern, currDir);
+
+    const content = {
+        pageTitle: "Search Results",
+        filesAndFolders: searchResults,
+        dirPath: currDir,
+        pattern: searchPattern,
+        searchResults: true,
+        }    
+
+    res.render("index.ejs", content);
+});
+
 app.post("/open-folder", (req, res) => {
     let folder = "";
     if (req.body.folderName) {
@@ -216,8 +244,8 @@ app.post("/open-folder", (req, res) => {
 
 app.post("/download-file", (req, res) => {
     const uniqueDownloadID = Math.floor(Math.random() * 1 * 1e9) + Math.floor(Math.random() * 1 * 1e9);
-    const fileName = req.body.fileName;
-    const filePath = req.body.directoryPath;
+    const fileName = req.body.fileName; console.log("Download fileName - ", fileName);
+    const filePath = req.body.directoryPath; console.log("Download filePath - ", filePath);
 
     let count = 0;
     for (let i = fileName.length; i >= 0; i--) {
