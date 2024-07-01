@@ -12,6 +12,28 @@
     </button>
 </form>
 
+<div id="hidden-elements">
+    <div id="new-folder-input" class="hidden-input new-folder-input">
+        <form action="/create-folder" method="POST">
+            <input class="hidden-input" type="text" name="directoryPath" value="<%= dirPath %>">
+            <input class="input-file-folder" type="text" id="new-folder" name="newFolder" value="New Folder">
+            <button id="new-folder-button" type="submit">
+                CREATE FOLDER
+            </button>
+        </form>
+    </div>
+
+    <div id="new-file-input" class="hidden-input new-file-input">
+        <form action="/upload-files" method="POST" enctype="multipart/form-data">
+            <input class="hidden-input" type="text" name="directoryPath" value="<%= dirPath %>">
+            <input class="input-file-folder" type="file" id="new-file" name="newFiles" multiple>
+            <button id="new-file-button" type="submit">
+                UPLOAD FILE
+            </button>
+        </form>
+    </div>
+</div>
+
 <div class="folder-container">
     <% const dirPathSplit = dirPath.split("/") %>
     <% const pathSplitLen = dirPathSplit.length %>
@@ -25,20 +47,12 @@
                 <img class="back-button-image" src="images/icons8-back-button-96.png">
             </button>
         </form>
-        <form action="/create-folder" method="POST">
-            <input type="text" name="directoryPath" value="<%= dirPath %>" style="visibility: hidden;">
-            <input type="text" id="new-folder" name="newFolder" value="New Folder">
-            <button class="new-folder-button" type="submit">
+        <button class="new-folder-button">
                 <img class="new-folder-button-image" src="images/icons8-new-folder-96.png">
-            </button>
-        </form>
-        <form action="/upload-files" method="POST" enctype="multipart/form-data">
-            <input type="text" name="directoryPath" value="<%= dirPath %>" style="visibility: hidden;">
-            <input type="file" id="new-file" name="newFiles" multiple>
-            <button class="new-file-button" type="submit">
+        </button>
+        <button class="new-file-button">
                 <img class="new-file-button-image" src="images/icons8-new-file-96 (1).png">
-            </button>
-        </form>
+        </button>
     </div>
     <form id="folder-file-container" action="/open-folder" method="POST">
         <div id="dir-nav-link-div">

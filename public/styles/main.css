@@ -1,4 +1,5 @@
 .body-container {
+    z-index: 0;
     display: flex;
     flex-flow: column nowrap;
     font-family: sans-serif;
