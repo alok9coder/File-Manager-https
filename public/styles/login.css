@@ -4,7 +4,7 @@
     flex-flow: column nowrap;
     justify-content: center;
     align-items: center;
-    height: 50vh;
+    height: 70vh;
 }
 
 .login-button {
@@ -19,4 +19,5 @@
     border-radius: 10px;
     background-color: bisque;
     padding: 2px 6px;
+    margin-block: 10px;
 }

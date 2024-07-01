@@ -33,6 +33,7 @@ button:hover {
 }
 
 #dir-nav-link-div {
+    margin-left: 20px;
     display: inline;
     flex-flow: row wrap;
     align-items: start;

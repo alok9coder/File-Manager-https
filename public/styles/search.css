@@ -1,0 +1,33 @@
+.search-bar {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.search-text {
+    width: 50%;
+    height: 30px;
+    border: solid darkcyan;
+    border-radius: 30px 0 0 30px;
+    padding-left: 10px;
+}
+
+.search-submit {
+    background: none;
+    border: solid darkcyan;
+    background-color: darkcyan;
+    width: 40px;
+    height: 38px;
+    border-radius: 0 30px 30px 0;
+}
+
+.search-submit:hover {
+    background: none;
+    background-color: royalblue;
+    border: solid royalblue;
+    color: black;
+    width: 40px;
+    height: 38px;
+    border-radius: 0 30px 30px 0;
+}
