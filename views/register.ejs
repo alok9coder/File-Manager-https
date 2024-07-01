@@ -1,0 +1,30 @@
+<%- include("partials/header.ejs") %>
+
+<div class="register-container">
+    <form action="/register" method="POST">
+        <div class="username">
+            <label for="username">Email</label>
+            <input type="email" name="username">
+        </div>
+        <br>
+        <div class="password">
+            <label for="password">Password</label>
+            <input type="password" name="password">
+        </div>
+        <br>
+        <button type="submit" class="sign-up-button">Sign Up</button>
+    </form>
+    <br>
+    <a id="login" href="login">Already have an Account</a>
+    <br>
+    <hr>
+    <br>
+    <div class="Google-sign-up">
+        <a class="Google-oauth-link" href="/auth/google" role="button">
+            <img id="google-auth-icon" src="images/google search_icon.png">
+            <h1>Sign Up with Google</h1>
+        </a>
+    </div>
+</div>
+
+<%- include("partials/footer.ejs") %>

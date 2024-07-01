@@ -1,14 +1,99 @@
 <%- include("partials/header.ejs") %>
 
-    <div class="index-container">
+<form class="search-bar" method="POST" action="/search">
+    <input class="search-text" type="text" name="search" placeholder="Search...">
+    <button class="search-submit" type="submit" value="submit">
+        <svg style="width: 25px; height: 25px;">
+            <path fill-rule="evenodd" clip-rule="evenodd"
+                d="M4.1 11.06a6.95 6.95 0 1 1 13.9 0 6.95 6.95 0 0 1-13.9 0zm6.94-8.05a8.05 8.05 0 1 0 5.13 14.26l3.75 3.75a.56.56 0 1 0 .8-.79l-3.74-3.73A8.05 8.05 0 0 0 11.04 3v.01z"
+                fill="currentColor">
+            </path>
+        </svg>
+    </button>
+</form>
+
+<div class="folder-container">
+    <% const dirPathSplit = dirPath.split("/") %>
+    <% const pathSplitLen = dirPathSplit.length %>
+    <!-- <h3><%= dirPath %></h3> -->
+    <!-- <h3><%= dirPathSplit[pathSplitLen - 2] %></h3> -->
+    <!-- <h3><%= dirPath.slice(0, (dirPath.length - dirPathSplit[pathSplitLen - 2].length) - 1) %></h3> -->
+    <div class="new-back-file">
         <form action="/open-folder" method="POST">
-            <button class="folder">
-                <img class="folder-image" src="#" width="240px">
-                <h1 class="folder-name">
-                    <%= folderName %>
-                </h1>
+            <button class="back-button" name="directoryPath" 
+                    value="<%= dirPath.slice(0, (dirPath.length - dirPathSplit[pathSplitLen - 2].length) - 1) %>">
+                <img class="back-button-image" src="images/icons8-back-button-96.png">
+            </button>
+        </form>
+        <form action="/create-folder" method="POST">
+            <input type="text" name="directoryPath" value="<%= dirPath %>" style="visibility: hidden;">
+            <input type="text" id="new-folder" name="newFolder" value="New Folder">
+            <button class="new-folder-button" type="submit">
+                <img class="new-folder-button-image" src="images/icons8-new-folder-96.png">
+            </button>
+        </form>
+        <form action="/upload-files" method="POST" enctype="multipart/form-data">
+            <input type="text" name="directoryPath" value="<%= dirPath %>" style="visibility: hidden;">
+            <input type="file" id="new-file" name="newFiles" multiple>
+            <button class="new-file-button" type="submit">
+                <img class="new-file-button-image" src="images/icons8-new-file-96 (1).png">
             </button>
         </form>
     </div>
+    <form id="folder-file-container" action="/open-folder" method="POST">
+        <div id="dir-nav-link-div">
+            <% for(let i = 0; i < dirPathSplit.length - 1; i++) { %>
+            <button class="dir-nav-link" name="Navigation" value="<%= dirPathSplit[i] %>">
+                <h1><%= dirPathSplit[i] + "/" %></h1>
+            </button>
+            <% } %>
+        </div>
+        <input id="invisible-element" type="text" name="directoryPath" value="<%= dirPath %>">
+        <div id="folder-file-main-container">
+            <% for (let i = 0; i < filesAndFolders.Folders.length; i++) { %>
+            <button class="folder" name="folderName" value="<%= filesAndFolders.Folders[i] %>">
+                <img class="folder-image" src="images/icons8-folder-480.png" width="240px">
+                <h1 class="folder-name">
+                    <% let n = filesAndFolders.Folders[i].length %>
+                    <% let folderName = "" %>
+                    <% if (n > 14) {%>
+                        <% for (let j = 0; j < n; j++) { %>
+                            <% if (j % 15 === 14) { %>
+                                <% folderName += filesAndFolders.Folders[i][j] + "\n" %>
+                            <% } else { %>
+                                <% folderName += filesAndFolders.Folders[i][j] %>
+                            <% } %>
+                        <% } %>
+                    <% } else { %>
+                        <% folderName = filesAndFolders.Folders[i] %>
+                    <% } %>
+                    <%= folderName %>
+                </h1>
+            </button>
+            <% } %>
+            <% for (let i = 0; i < filesAndFolders.Files.length; i++) { %>
+            <button class="file" name="fileName" value="<%= filesAndFolders.Files[i] %>" formaction="/download-file">
+                <img class="file-image" src="images/icons8-file-1500.png" width="240px">
+                <h1 class="file-name">
+                    <% let n = filesAndFolders.Files[i].length %>
+                    <% let fileName = "" %>
+                    <% if (n > 14) {%>
+                        <% for (let j = 0; j < n; j++) { %>
+                            <% if (j % 15 === 14) { %>
+                                <% fileName += filesAndFolders.Files[i][j] + "\n" %>
+                            <% } else { %>
+                                <% fileName += filesAndFolders.Files[i][j] %>
+                            <% } %>
+                        <% } %>
+                    <% } else { %>
+                        <% fileName = filesAndFolders.Files[i] %>
+                    <% } %>
+                    <%= fileName %>
+                </h1>
+            </button>
+            <% } %>        
+        </div>
+    </form>
+</div>
 
 <%- include("partials/footer.ejs") %>

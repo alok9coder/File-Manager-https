@@ -1,0 +1,21 @@
+.register-container {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    height: 50vh;
+}
+
+.sign-up-button {
+    color: black;
+    background-color: azure;
+    border-radius: 15px;
+    padding: 3px 7px;
+}
+
+#login {
+    color: grey;
+    border-radius: 10px;
+    background-color: bisque;
+    padding: 2px 6px;
+}

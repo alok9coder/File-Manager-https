@@ -1,0 +1,50 @@
+.body-container {
+    display: flex;
+    flex-flow: column nowrap;
+    font-family: sans-serif;
+    justify-content: space-between;
+    height: 100vh;
+    background-color: rgb(50, 50, 50);
+    color: whitesmoke;
+}
+
+@media (max-width:600px) {
+    .body-container {
+        align-items: center;
+    }
+}
+
+button {
+    background: none;
+    border: none;
+    color:aliceblue;
+}
+
+a {
+    text-decoration: none;
+    color: aquamarine;
+}
+
+ul {
+    list-style: none;
+    color: aquamarine;
+}
+
+hr {
+    width: 29vw;
+}
+
+#google-auth-icon {
+    width: 60px;
+    height: 60px;
+    margin-right: 20px;
+}
+
+.Google-oauth-link {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    border-radius: 10px;
+    background-color: aliceblue;
+    padding-inline: 10px;
+}

@@ -1,0 +1,63 @@
+.folder-container {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: start;
+    justify-content: center;
+}
+
+.new-back-file {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: space-between;
+    width: 90vw;
+}
+
+button:hover {
+    background-color: black;
+    border-radius: 10px;
+    color: white;
+    box-shadow: 2px 2px 6px 6px white;
+}
+
+#folder-file-container {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: start;
+    align-items: start;
+}
+
+#invisible-element {
+    visibility: hidden;
+    z-index: -2;
+}
+
+#dir-nav-link-div {
+    display: inline;
+    flex-flow: row wrap;
+    align-items: start;
+    justify-content: start;
+}
+
+.dir-nav-link {
+    margin-top: 20px;
+}
+
+.dir-nav-link h1 {
+    margin: 4px 2px 2px 2px;
+}
+
+#folder-file-main-container {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: baseline;
+    justify-content: start;
+}
+
+.folder {
+    max-width: 250px;
+}
+
+.file {
+    max-width: 250px;
+}
