@@ -34,7 +34,7 @@ export async function searchFiles(name, dir) {
 
         //console.log("movieName: ", movieName);
 
-        for (let k = 0; k < (folderName.length - patternLength - 4); k++) {
+        for (let k = 0; k <= (folderName.length - patternLength); k++) {
             let strcomp = [];
 
             for (let l = 0; l < patternLength; l++) {
@@ -65,7 +65,7 @@ export async function searchFiles(name, dir) {
 
         //console.log("movieName: ", movieName);
 
-        for (let k = 0; k < (fileName.length - patternLength - 4); k++) {
+        for (let k = 0; k <= (fileName.length - patternLength - 4); k++) {
             let strcomp = [];
 
             for (let l = 0; l < patternLength; l++) {
