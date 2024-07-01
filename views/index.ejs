@@ -61,9 +61,10 @@
         <ul class="search-results-folders">
             <% if (filesAndFolders.Folders.length > 0) { %>
                 <% for (let i = 0; i < filesAndFolders.Folders.length; i++) { %>
+                    <% let searchFolders = filesAndFolders.Folders[i].split("/") %>
                     <hr>
                     <li class="search-item">
-                        <button class="search-result-link" value="<%= filesAndFolders.Folders[i] %>" 
+                        <button class="search-result-link" value="<%= searchFolders[searchFolders.length - 1] %>" 
                                 name="folderName">
                             <h1><%= filesAndFolders.Folders[i] %></h1>
                         </button>
