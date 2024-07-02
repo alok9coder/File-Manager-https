@@ -220,7 +220,9 @@ app.post("/open-folder", (req, res) => {
     if (dirPath.length < 3 && Environment === "Windows") {
         dirPath = homeDir;
     } else {
-        if (dirPath.length < 1) {
+        if (dirPath === "/") {
+            dirPath = dirPath;
+        } else if (dirPath.length < 1) {
             dirPath = homeDir;
         }
     }
