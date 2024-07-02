@@ -64,8 +64,8 @@ const db = new pg.Client({
 });
 db.connect();
 
-await db.query(
-    `CREATE TABLE IF NOT EXIST users(
+db.query(
+    `CREATE TABLE IF NOT EXISTS users(
         id SERIAL PRIMARY KEY, 
         email VARCHAR(100) UNIQUE NOT NULL, 
         password VARCHAR(1000) NOT NULL
@@ -164,7 +164,7 @@ app.post("/register-account", async (req, res) => {
                     console.log("Error hashing password: ", error);
                 } else {
                     const result = await db.query(
-                        "INSERT INTO USERS (email, password) VALUES ($1, $2) RETURNING *;",
+                        "INSERT INTO users (email, password) VALUES ($1, $2) RETURNING *;",
                         [email, hash]
                     );
                     const user = result.rows[0];

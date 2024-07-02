@@ -2,6 +2,7 @@
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
+    background-color: black;
 }
 
 .social-media-container {
@@ -36,7 +37,8 @@
 }
 
 .copyright {
-    color: red
+    color: red;
+    margin-left: 10px;
 }
 
 @media (max-width: 600px) {
