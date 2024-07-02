@@ -64,6 +64,14 @@ const db = new pg.Client({
 });
 db.connect();
 
+await db.query(
+    `CREATE TABLE IF NOT EXIST users(
+        id SERIAL PRIMARY KEY, 
+        email VARCHAR(100) UNIQUE NOT NULL, 
+        password VARCHAR(1000) NOT NULL
+    );`
+);
+
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
         cb(null, uploadDir);
