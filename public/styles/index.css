@@ -69,6 +69,12 @@
     margin-left: 70%;
 }
 
+@media (max-width: 1000px) {
+    .new-back-file {
+        margin-left: 50%;
+    }
+}
+
 @media (max-width: 600px) {
     .new-back-file {
         margin-top: 10px;
@@ -161,4 +167,22 @@ button:hover {
 
 .file {
     max-width: 250px;
+}
+
+@media (max-width: 800px) {
+    .folder {
+        max-width: 200px;
+    }
+
+    .file {
+        max-width: 200px;
+    }
+
+    .folder-image {
+        width: 150px;
+    }
+
+    .file-image {
+        width: 150px;
+    }
 }
